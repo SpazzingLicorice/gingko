@@ -1,25 +1,63 @@
 
+// (function() {
+//   'use strict';
+
+//   angular.module('app')
+//   .factory('homeFactory', homeFactory);
+
+//   homeFactory.$inject = ['$http'];
+
+//   function homeFactory($http) {
+//     var services = {
+
+//       getMeals : getMeals,
+//       getEvent : getEvent
+
+//     };
+
+//     return services;
+
+//     function getEvent (mealID) {
+//       return $http({
+//       method: 'GET',
+//       //hard coded in number(id as the meal id) for the minute need to work out how to get this id
+//       //number to be kept with the info displayed on the events page
+//       //so that when it is clicked on to show the whole event you know what event to query from the db
+//       //this also wants mocking to the meal view
+//       url: '/api/in/meals/' + mealID
+//       })
+//       .then(function (response) {
+//         return response.data;
+//       });
+//     }
+
+//     function getMeals () {
+//       return $http({
+//       method: 'GET',
+//       url: '/api/in/meals'
+//       })
+//       .then(function (response) {
+//         return response.data;
+//       });
+//     }
+
+
+//   }
+
+// })();
+
+
 (function() {
   'use strict';
 
   angular.module('app')
-  .factory('homeFactory', homeFactory);
+  .factory('homeFactoryTest', homeFactoryTest);
 
-  homeFactory.$inject = ['$http'];
+  homeFactoryTest.$inject = ['$http'];
 
-//     var data = {"title":"Indian","date":"Mon Nov 25 2015 21:00:00 GMT-0800 (PST)",
-// "time":"Mon Nov 25 2015 21:00:00 GMT-0800 (PST)",
-// "description":"Time for some Curry",
-// "restaurant":"Indian Palace",
-// "address":"44 Haight Street",
-// "contact":"83638202",
-// "firstName":"David",
-// "lastName":"Tsai"};
-
-  function homeFactory($http) {
+  function homeFactoryTest($http) {
     var services = {
-      
-      //activate : activate,
+
       getMeals : getMeals,
       getEvent : getEvent
 
@@ -27,43 +65,23 @@
 
     return services;
 
-    // function activate () {
-    //   getMeals();
-    // }
-
-    // function postMeal (d) {
-    //   return $http({
-    //   method: 'POST',
-    //   url: '/api/in/meals',
-    //   data: data
-    //   })
-    //   .then(function (response) {
-    //     console.log('response returned!!');
-    //     return response.data;
-    //   });
-
-    // }
-
-    function getEvent () {
-      console.log('in get event');
+    function getEvent (mealID) {
       return $http({
-      method: 'GET',
-      url: '/api/in/meals/1'
+        method: 'GET',
+        url: '/api/in/meals/' + mealID,
       })
       .then(function (response) {
-        console.log('---------------------',response.data);
         return response.data;
       });
     }
 
     function getMeals () {
       return $http({
-      method: 'GET',
-      url: '/api/in/meals'
+        method: 'GET',
+        url: '/api/in/meals'
       })
       .then(function (response) {
-        console.log(response.data);
-        return response.data;
+        return data;
       });
     }
 
@@ -71,4 +89,22 @@
   }
 
 })();
+var numCards = 4;
 
+var data = [];
+
+for(var i = 0; i < numCards; i++) {
+  data.push({
+    address: [
+      "360 Jessie St",
+      "Union Square",
+      "San Francisco, CA 94103",
+    ],
+    date: "November 21, 2015",
+    description: "Best meal",
+    host: "undefined undefined",
+    id: i,
+    time: "12:00:00 am",
+    title: "Foodbruh",
+  });
+}

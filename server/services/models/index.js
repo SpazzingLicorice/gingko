@@ -1,8 +1,8 @@
 //This file would be used to use sequelize on heroku
 
 if (!global.hasOwnProperty('db')) {
-  var Sequelize = require('sequelize')
-    , sequelize = null
+  var Sequelize = require('sequelize'),
+  sequelize = null;
 
 
   //figure out database color--
@@ -12,7 +12,7 @@ if (!global.hasOwnProperty('db')) {
       dialect:  'postgres',
       protocol: 'postgres',
       logging:  true //false
-    })
+    });
   } else {
     // the application is executed on the local machine ... use mysql
     sequelize = new Sequelize("tablesurfer", "admin", "admin", {
@@ -29,12 +29,6 @@ if (!global.hasOwnProperty('db')) {
       allowNull: false
     }
 
-    //TO ADD:
-    // facebookId: {
-    //   type: Sequelize.STRING,
-    //   allowNull: false
-    // }
-    
   });
 
   var Meals = sequelize.define("Meals", {
@@ -90,13 +84,14 @@ if (!global.hasOwnProperty('db')) {
   Restaurants.hasOne(Meals);
   Meals.belongsTo(Restaurants);
 
+//table not yet utilized but could be another method to filter/search by?!
   var Genres = sequelize.define("Genres", {
     name: {
       type: Sequelize.STRING,
       allowNull: false
     }
   });
-
+//added associations between the restaurants table and the genre table
   Genres.hasOne(Restaurants);
   Restaurants.belongsTo(Genres);
 
@@ -107,7 +102,7 @@ if (!global.hasOwnProperty('db')) {
   Meals.belongsToMany(Users, {through: 'Attendees'});
 
 
-
+//force true means that all tables will be droped when refreshed this might want removing!
   sequelize.sync({force: true});
 
   /*
@@ -123,7 +118,7 @@ if (!global.hasOwnProperty('db')) {
     Attendees: Attendees
 
     // add your other models here
-  }
+  };
 }
 
-module.exports = global.db
+module.exports = global.db;

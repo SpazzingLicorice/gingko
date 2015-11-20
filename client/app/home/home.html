@@ -1,28 +1,34 @@
-<div id="home" ng-controller='HomeCtrl as home' ng-cloak>
-<!-- in order to use the self properties, you must specify controller as a variable   -->
-  <span>
-    <h3>Upcoming TableSurfers Meals in San Francisco, CA</h3>
-  </span>
+<div id="home_container" layout="column">
+  <section class="hero" layout="column">
+    <h1 class="title">Table Surfer</h1>
+    <h3 class="subtitle">Eat some stuff</h3>
+  </section>
 
-  <div ng-repeat="event in home.events">
-    <md-card class="colour">
-      <md-card-content>
-        <h2 class="md-title">{{event.title}}</h2>
-        <p>
-          {{event.description}}
-        </p>
-        <p>
-          {{event.date}}
-        </p>
-         <p>
-          {{event.time}}
-        </p>
-      </md-card-content>
-      <md-card-actions layout="row" layout-align="end center">
-        <md-button ng-click="home.routeToEvent();">View More</md-button>
-      </md-card-actions>
-    </md-card>
+  <md-toolbar layout="row" layout-align="space-between center" class="search">
+    <!--The left side-->
+    <span> <h2 class="md-toolbar-tools"> Search the stuff </h2></span>
+    <!--The right side-->
+    <span>
+        <md-button aria-label="First Button"> Button1 </md-button>
+        <md-button aria-label="Second Button"> Button2 </md-button>
+    </span>
+</md-toolbar>
 
+  <div id="home" ng-controller='HomeCtrl as home' ng-cloak>
+  <!-- in order to use the self properties, you must specify controller as a variable   -->
+    <section class="suggestions">
+      <div class="card_container" layout-wrap layout-sm="column" layout-gt-sm="row">
+        <a ng-click="home.go(); home.viewTable()" ng-repeat="table in home.tables" flex="25">
+          <md-card class="colour">
+            <md-card-content>
+              <h2 class="md-title">{{table.title}}</h2>
+              <p>{{table.description}}</p>
+              <p>{{table.date}}</p>
+              <p>{{table.time}}</p>
+            </md-card-content>
+          </md-card>
+        </a>
+      </div>
+    </section>
   </div>
-
 </div>

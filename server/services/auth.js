@@ -18,4 +18,4 @@ if(process.env['facebookAuth.callbackURL'] !== undefined) {
   };
 } else {
   module.exports = require('./authKeys');
-};
+}

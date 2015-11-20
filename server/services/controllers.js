@@ -43,25 +43,22 @@ module.exports = {
   },
 
   meals: {
-
-    // TODO: Perhaps rename to getAll?
-    get: function (data) {
+    get: function () {
       return database.Meals.findAll({ include: [database.Users, database.Restaurants]})
         .then(function (meals) {
-          //use the bluebird promise functions
           return Promise.map(meals, function(meal) {
-            return meal.getUsers().then(function(result) {
+            return meal.getUsers()
+            .then(function(result) {
               var mealObj = {meal: meal, attendees: result};
               return mealObj;
             });
           });
-        }).then(function(meals) {
-          //make an object to send back
+        })
+        .then(function(meals) {
           var obj = [];
           meals.map(function(meal, i) {
             obj.push(new objectify.restaurantData(meal));
           });
-          // console.log('----------',meals);
           return obj;
         });
     },

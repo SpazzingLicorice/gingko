@@ -4,7 +4,7 @@ module.exports = function (grunt) {
     pkg: grunt.file.readJSON('package.JSON'),
     concat: {
       src: [],
-      dest: 
+      dest: []
     },
     mochaTest: {
       test: {
@@ -27,17 +27,17 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
   grunt.registerTask('test', [
-      'mochaTest'
-    ]);
+    'mochaTest'
+  ]);
 
   grunt.registerTask('build', [
-      'concat',
-      'uglify'
-    ]);
+    'concat',
+    'uglify'
+  ]);
 
   grunt.registerTask('deploy', [
-      'test',
-      'build'
-    ]);
+    'test',
+    'build'
+  ]);
 
 };
