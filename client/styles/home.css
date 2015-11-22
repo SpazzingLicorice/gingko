@@ -6,18 +6,15 @@
   display: block;
   background-color: papayawhip;
   width:100%;
-}
-
-.suggestions {
-  background-color: firebrick;
-  /*width:100%;*/
+  -webkit-background-size: cover;
+  background-size: cover;
 }
 
 h1#title {
+  color: tomato;
   font-size: 100px;
   text-align: center;
   font-weight: 100;
-  margin: 100px 0 15px 0;
 }
 
 h3#subtitle {
@@ -25,16 +22,47 @@ h3#subtitle {
   text-align: center;
   margin: 0;
 }
+
 .multibar-input {
   background-color: white;
 }
 
-.green {
+.card {
+  position: relative;
+  -webkit-background-size: cover;
+  background-size: cover;
   background-color: firebrick;
 }
 
-#cards {
-  width: 96%;
-  padding-left: 2%;
-  padding-right: 2%;
+#cards_container {
+  width: 100%;
+}
+
+.head > h3 {
+  background-color: rgba(255, 255, 255, 0.3);
+  text-align: center;
+  padding: 5px;
+  margin: 0;
+}
+
+.foot {
+  width:100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.feat_container {
+  text-align: right;
+}
+
+.feature {
+  background-color: rgba(255, 255, 255, 0.3);
+  display: inline-block;
+  padding: 5px;
+  margin: 0;
+  right: 0;
+}
+
+.description {
+  background-color: rgba(255, 255, 255, 0.3);
 }

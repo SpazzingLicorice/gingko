@@ -1,40 +1,61 @@
 <div id="home_container" layout="column" ng-cloak>
   <section id="hero_container" layout="column">
     <h1 id="title" style="padding-top: calc">Table Surfer</h1>
-    <h3 id="subtitle">Eat some stuff</h3>
+    <h3 id="subtitle">Meet food and eat new people</h3>
+    <div id="lucky">I'm hungry!</div>
   </section>
 
-  <md-toolbar layout="row" layout-align="space-between center" class="search">
-    <!--The left side-->
-    <span> <h2 class="md-toolbar-tools"> Search the stuff </h2></span>
-    <!--The right side-->
-    <span>
-        <md-button aria-label="First Button"> Button1 </md-button>
-        <md-button aria-label="Second Button"> Button2 </md-button>
-    </span>
-  </md-toolbar>
-
-  <div id="cards" ng-controller='HomeCtrl as home' ng-cloak>
-    <md-grid-list
-    md-cols-gt-sm="3" md-cols="1"
-    md-row-height-gt-md="5:4" md-row-height="4:5"
-    md-gutter="12px" md-gutter-gt-sm="8px" flex="100"
-    layout-align="space-between center">
-      <md-grid-tile class="green">
-        <md-grid-tile-footer>
-          <h3>#1: (1r x 1c)</h3>
-        </md-grid-tile-footer>
-      </md-grid-tile>
-      <md-grid-tile class="green">
-        <md-grid-tile-footer>
-          <h3>#2: (1r x 1c)</h3>
-        </md-grid-tile-footer>
-      </md-grid-tile>
-      <md-grid-tile class="green">
-        <md-grid-tile-footer>
-          <h3>#3: (1r x 1c)</h3>
-        </md-grid-tile-footer>
-      </md-grid-tile>
-    </md-grid-list>
+  <div id="cards_container"
+  layout="row" layout-align="space-around center"
+  layout-sm="column"
+  ng-controller='HomeCtrl as home'>
+    <div id="near" class="card" flex="30">
+      <div class="head">
+        <h3>Nearby</h3>
+        <h1>Cavalier</h1>
+      </div>
+      <div class="foot">
+        <div class="feat_container">
+          <h1 class="feature">San Francisco, CA</h1>
+        </div>
+        <ul class="description">
+          <li>one</li>
+          <li>two</li>
+          <li>three</li>
+        </ul>
+      </div>
+    </div>
+    <div id="value" class="card" flex="30">
+      <div class="head">
+        <h3>Value</h3>
+        <h1>Burger King</h1>
+      </div>
+      <div class="foot">
+        <div class="feat_container">
+          <h1 class="feature">Under $10</h1>
+        </div>
+        <ul class="description">
+          <li>one</li>
+          <li>two</li>
+          <li>three</li>
+        </ul>
+      </div>
+    </div>
+    <div id="soon" class="card" flex="30">
+      <div class="head">
+        <h3>Coming Up</h3>
+        <h1>Tempest</h1>
+      </div>
+      <div class="foot">
+        <div class="feat_container">
+          <h1 class="feature">4:00pm</h1>
+        </div>
+        <ul class="description">
+          <li>one</li>
+          <li>two</li>
+          <li>three</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>

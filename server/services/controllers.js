@@ -4,7 +4,6 @@ var objectify = require('./../classes/controllerClasses');
 
 module.exports = {
   user: {
-
     get: function () {
       return database.Users.findAll()
       .then(function (users) {
@@ -80,7 +79,6 @@ module.exports = {
         .then(function (meal) {
           return meal.getUsers().then(function (result) {
             var mealObj = {meal: meal, Attendees: result};
-            console.log(mealObj);
             return mealObj;
           });
 

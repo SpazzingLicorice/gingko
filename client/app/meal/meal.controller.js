@@ -10,7 +10,6 @@
   MealCtrl.$inject = ['$http', '$location', '$window', 'mealsData', '$stateParams'];
 
   function MealCtrl($http, $location, $window, Map, mealsData, $stateParams) {
-
     var self = this;
     self.id = $location.path();
     self.data;

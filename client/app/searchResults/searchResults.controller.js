@@ -9,7 +9,7 @@
 
   function SearchResultsCtrl(multibarFactory, $state, $location, $window, $http, mealsData) {
     var self = this;
-    
+
     self.meals = mealsData.data.map(function(meal) {
       return {
         address: meal.address.join(', '),
@@ -43,7 +43,6 @@
     };
 
     self.searchQuery = multibarFactory.getQuery();
-
   }
 
 })();
