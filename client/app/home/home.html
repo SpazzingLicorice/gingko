@@ -1,18 +1,25 @@
 <div id="home_container" layout="column" ng-cloak>
-  <section id="hero_container" layout="column">
-    <h1 id="title" style="padding-top: calc">Table Surfer</h1>
-    <h3 id="subtitle">Meet food and eat new people</h3>
-    <div id="lucky">I'm hungry!</div>
+  <section id="hero_container" layout="row" flex layout-align="center center">
+    <div layout="column" layout-align="center center">
+      <h1 id="title">Table Surfer</h1>
+      <h3 id="subtitle">Meet food and eat new people</h3>
+      <br>
+      <md-button class="md-accent md-raised hungry" aria-label="Find meals" ui-sref="results">
+        <h1>I'm hungry!</h1>
+      </md-button>
+    </div>
   </section>
 
   <div id="cards_container"
   layout="row" layout-align="space-around center"
   layout-sm="column">
+    <!-- Card featuring nearest tables -->
     <div id="near" class="card" flex="30">
       <div class="head">
         <h3>Nearby</h3>
         <h1>Cavalier</h1>
       </div>
+      <md-progress-circular class="md-accent" ng-if="!home.geolocation" md-mode="indeterminate"></md-progress-circular>
       <div class="foot">
         <div class="feat_container">
           <h1 class="feature">San Francisco, CA</h1>
@@ -24,14 +31,15 @@
         </ul>
       </div>
     </div>
+    <!-- Card featuring highest rated tables -->
     <div id="value" class="card" flex="30">
       <div class="head">
-        <h3>Value</h3>
+        <h3>Highest Rated</h3>
         <h1>Burger King</h1>
       </div>
       <div class="foot">
         <div class="feat_container">
-          <h1 class="feature">Under $10</h1>
+          <h1 class="feature">4.5*</h1>
         </div>
         <ul class="description">
           <li>one</li>
@@ -40,6 +48,7 @@
         </ul>
       </div>
     </div>
+    <!-- Card featuring soonest tables -->
     <div id="soon" class="card" flex="30">
       <div class="head">
         <h3>Coming Up</h3>

@@ -1,35 +1,33 @@
 <!-- Multibar -->
 <div id="multibar" ng-cloak>
-  <md-content>
-    <md-toolbar>
-      <div class="md-toolbar-tools">
-        <md-button ui-sref="home">Table Surfers</md-button>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <md-button ui-sref="home">Table Surfers</md-button>
 
-        <form ng-submit="multibar.goToResults()">
-          <md-input-container class="multibar-input">
-            <label>Search...</label>
-            <input ng-model="multibar.searchQuery" id="searchInput">
-          </md-input-container>
-        </form>
+      <form ng-submit="multibar.goToResults()">
+        <md-input-container class="multibar-input">
+          <label>Search...</label>
+          <input ng-model="multibar.searchQuery" id="searchInput">
+        </md-input-container>
+      </form>
 
-        <span flex=""></span>
+      <span flex=""></span>
 
-        <md-button ui-sref="search" class="md-raised">
-          HOST
+      <md-button ng-if="multibar.isLoggedIn" ui-sref="search" class="md-raised">
+        HOST
+      </md-button>
+
+      <md-menu md-offset="8">
+        <md-button aria-label="Open demo menu" class="md-raised" ng-click="multibar.isLoggedIn ? $mdOpenMenu($event) : multibar.handleLogin()">
+          {{multibar.displayLogin()}}
         </md-button>
+        <md-menu-content width="2">
+          <md-menu-item ng-repeat="item in multibar.accountSettings">
+            <md-button ng-click="multibar.handleOption($index)"> <span md-menu-align-target="">{{item}}</span> </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
 
-        <md-menu md-offset="8">
-          <md-button aria-label="Open demo menu" class="md-raised" ng-click="multibar.isLoggedIn ? $mdOpenMenu($event) : multibar.handleLogin()">
-            {{multibar.displayLogin()}}
-          </md-button>
-          <md-menu-content width="2">
-            <md-menu-item ng-repeat="item in multibar.accountSettings">
-              <md-button ng-click="multibar.handleOption($index)"> <span md-menu-align-target="">{{item}}</span> </md-button>
-            </md-menu-item>
-          </md-menu-content>
-        </md-menu>
-
-      </div>
-    </md-toolbar>
-  </md-content>
+    </div>
+  </md-toolbar>
 </div>

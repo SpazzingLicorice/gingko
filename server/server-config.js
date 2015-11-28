@@ -9,19 +9,24 @@ var path = require('path');
 var passport = require('passport');
 var facebookStrategy = require('./services/passportStrategies');
 
+// Change session secret based on environment
+var sessionSecret = process.env.sessionSecret || 'hackreactor';
+
 /*************************************
             EXPRESS APP
 **************************************/
 var app = express();
+app.use(express.static(path.join(__dirname, '/../client')));
+
 app.use(bodyParser.json());
 app.use(partials());
 app.use(session({
-  secret: 'hackreactor'
+  secret: sessionSecret,
+  resave: false,
+  saveUninitialized: false
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.use(express.static(path.join(__dirname, '/../client')));
 
 /*************************************
             PASSPORT AUTH

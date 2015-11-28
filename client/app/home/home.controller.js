@@ -8,32 +8,31 @@
   .controller('HomeCtrl', HomeCtrl);
 
   // if factories are needed, inject here
-  HomeCtrl.$inject = ['homeFactoryTest', '$state', "$location", "$window"];
+  HomeCtrl.$inject = ['homeFactoryTest', 'homeFactory', '$state', "$location", "$window", 'locationFactory'];
 
-  function HomeCtrl(homeFactoryTest, $state, $location, $window) {
+  function HomeCtrl(homeFactoryTest, homeFactory, $state, $location, $window, locationFactory) {
     var self = this;
+    self.geolocation = false;
     // Meal suggestions
     self.tables = {
-      near: {},
-      soon: {},
-      value: {}
+      near: [],
+      soon: [],
+      value: []
     };
+
+    self.geolocation = locationFactory.getLocation();
 
     // Set heights of elements
     var rowHeight = (window.innerHeight - 64)/ 2;
     document.getElementById('hero_container').style.height = rowHeight + "px";
-    document.getElementById('cards_container').style.height = rowHeight + "px";
-    document.getElementById('title').style.marginTop = rowHeight / 3;
     Array.prototype.slice.call(document.getElementsByClassName('card')).forEach(function(el) {
-      el.style.height = rowHeight * 0.9 + "px";
+      el.style.height = rowHeight + "px";
     });
-
-    // Set margin-top for the title
-    document.getElementById('title').style.margin = (rowHeight / 6) + "px 0 0 0";
 
 
     // Set img src for hero image
     document.getElementById('hero_container').style.backgroundImage = "url('http://losangeleslawyersource.com/wp-content/uploads/2013/08/serious-injuries.jpg')";
+
     // Set img src for suggestions
     document.getElementById('near').style.backgroundImage = "url('http://blenderartists.org/forum/attachment.php?attachmentid=303132&d=1397678638')";
     document.getElementById('value').style.backgroundImage = "url('https://upload.wikimedia.org/wikipedia/en/a/a3/Toronto_Propane_Explosion.jpg')";
@@ -41,7 +40,7 @@
 
 
     self.go = function(e, v) {
-      // console.log(e, v);
+      console.log('went');
     };
 
     // TODO: Get closest, highest rated, and soonest available meals instead of all of them
@@ -49,6 +48,7 @@
       //call the factory function to get all of the meals
       homeFactoryTest.getMeals()
       .then(function(data) {
+
         /*
         data = {
           address: Array[3]
@@ -62,7 +62,7 @@
           title: "Foodbruh"
         }
         */
-        self.tables = data;
+        // self.tables = data;
       });
     };
 

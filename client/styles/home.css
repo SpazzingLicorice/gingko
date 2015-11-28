@@ -1,7 +1,7 @@
-/* 
-  Allow angular.js to be loaded in body, hiding cloaked elements until 
-  templates compile.  The !important is important given that there may be 
-  other selectors that are more specific or come later and might alter display.  
+/*
+  Allow angular.js to be loaded in body, hiding cloaked elements until
+  templates compile.  The !important is important given that there may be
+  other selectors that are more specific or come later and might alter display.
  */
 [ng\:cloak], [ng-cloak], .ng-cloak {
   display: none !important;
@@ -12,9 +12,7 @@
 }
 
 #hero_container {
-  display: block;
   background-color: papayawhip;
-  width:100%;
   -webkit-background-size: cover;
   background-size: cover;
 }
@@ -22,14 +20,17 @@
 h1#title {
   color: tomato;
   font-size: 100px;
-  text-align: center;
   font-weight: 100;
+  margin: 0;
 }
 
 h3#subtitle {
   font-size: 25px;
-  text-align: center;
   margin: 0;
+}
+
+.md-button.hungry {
+  width: 70%;
 }
 
 .multibar-input {
@@ -37,10 +38,10 @@ h3#subtitle {
 }
 
 .card {
+  background-color: firebrick;
   position: relative;
   -webkit-background-size: cover;
   background-size: cover;
-  background-color: firebrick;
 }
 
 #cards_container {

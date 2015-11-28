@@ -1,50 +1,47 @@
+(function() {
+  'use strict';
 
-// (function() {
-//   'use strict';
+  angular.module('app')
+  .factory('homeFactory', homeFactory);
 
-//   angular.module('app')
-//   .factory('homeFactory', homeFactory);
+  homeFactory.$inject = ['$http'];
 
-//   homeFactory.$inject = ['$http'];
+  function homeFactory($http) {
+    var services = {
+      getMeals : getMeals,
+      getEvent : getEvent
+    };
 
-//   function homeFactory($http) {
-//     var services = {
+    return services;
 
-//       getMeals : getMeals,
-//       getEvent : getEvent
+    function getEvent (mealID) {
+      return $http({
+      method: 'GET',
+      //hard coded in number(id as the meal id) for the minute need to work out how to get this id
+      //number to be kept with the info displayed on the events page
+      //so that when it is clicked on to show the whole event you know what event to query from the db
+      //this also wants mocking to the meal view
+      url: '/api/in/meals/' + mealID
+      })
+      .then(function (response) {
+        return response.data;
+      });
+    }
 
-//     };
-
-//     return services;
-
-//     function getEvent (mealID) {
-//       return $http({
-//       method: 'GET',
-//       //hard coded in number(id as the meal id) for the minute need to work out how to get this id
-//       //number to be kept with the info displayed on the events page
-//       //so that when it is clicked on to show the whole event you know what event to query from the db
-//       //this also wants mocking to the meal view
-//       url: '/api/in/meals/' + mealID
-//       })
-//       .then(function (response) {
-//         return response.data;
-//       });
-//     }
-
-//     function getMeals () {
-//       return $http({
-//       method: 'GET',
-//       url: '/api/in/meals'
-//       })
-//       .then(function (response) {
-//         return response.data;
-//       });
-//     }
+    function getMeals () {
+      return $http({
+      method: 'GET',
+      url: '/api/in/meals'
+      })
+      .then(function (response) {
+        return response.data;
+      });
+    }
 
 
-//   }
+  }
 
-// })();
+})();
 
 
 (function() {
@@ -81,6 +78,7 @@
         url: '/meals'
       })
       .then(function (response) {
+        // console.log('meal datas bruuuuhhhh',response)
         return data;
       });
     }

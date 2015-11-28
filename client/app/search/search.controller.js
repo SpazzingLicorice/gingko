@@ -33,7 +33,7 @@
       var halfStarPath = '../../styles/star-half.png'
       var emptyStarPath = '../../styles/star-empty.png';
 
-      var starArr = [emptyStarPath, emptyStarPath, 
+      var starArr = [emptyStarPath, emptyStarPath,
         emptyStarPath, emptyStarPath, emptyStarPath];
       var i = 0;
       while (i < rating) {
