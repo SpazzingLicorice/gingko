@@ -4,18 +4,12 @@ var request = require('request');
 var oauthSignature = require('oauth-signature');
 var n = require('nonce')();
 var qs = require('querystring');
-var Promise = require('bluebird');
-
-
-
-var fs = require('fs');
-
-
 var auth = require('../services/auth.js');
 
+// Config for Yelp oAuth Request
+// set_parameters: object with params to search
+// callback: callback(error, response, body)
 var request_yelp = function(set_parameters, callback) {
-  // set_parameters: object with params to search
-  // callback: callback(error, response, body)
   var httpMethod = 'GET';
   var url = 'http://api.yelp.com/v2/search';
 
@@ -33,7 +27,7 @@ var request_yelp = function(set_parameters, callback) {
     oauth_version: '1.0'
   };
 
-  // parameters combined in order of importance
+  // Parameters combined in order of importance
   var parameters = _.assign(default_parameters, set_parameters, required_parameters);
 
   var consumerSecret = auth.yelp.consumerSecret;
@@ -44,6 +38,7 @@ var request_yelp = function(set_parameters, callback) {
   var signature = oauthSignature.generate(httpMethod, url, parameters, consumerSecret, tokenSecret, {
     encodeSignature: false
   });
+
   parameters.oauth_signature = signature;
   var paramURL = qs.stringify(parameters);
   var apiURL = url + '?' + paramURL;
@@ -54,45 +49,27 @@ var request_yelp = function(set_parameters, callback) {
 
 };
 
-module.exports = function(db, passport, isLoggedIn) {
+module.exports = function(passport, isLoggedIn) {
 
   var router = express.Router();
 
-  router.get('/login', passport.authenticate('facebook', { 
-    scope: 'email'
-  }));
+  router.get('/', function(req, res) {
 
-  router.get('/login/callback', passport.authenticate('facebook', {
-    failureRedirect: '/'
-  }), isLoggedIn, function(req, res) {
-    res.redirect('/?' + req.user.dataValues.facebookId);
-  });
-
-  router.get('/logout', function(req, res) {
-    req.logout();
-    res.redirect('/');
-  });
-
-  router.get('/yelp', function(req, res) {
-    // set Yelp Search API params
+    // Set Yelp Search API params
     var params = {
       term: req.query.term,
       limit: "10"
     };
 
-    request_yelp(params, function(error, response, body) {
-      if (error) {
-        console.log("Error hitting Yelp's Search API: ");
+    // GET query results from Yelp
+    request_yelp(params, function(err, response, body) {
+      if (err) {
+        console.error("Error hitting Yelp's Search API: ", err);
       } else {
         res.send(JSON.parse(body).businesses);
       }
     });
   });
 
-  router.get('/', function(req, res) {
-    //query google for google maps stuff
-  });
-
   return router;
-
 };

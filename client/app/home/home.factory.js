@@ -68,7 +68,7 @@
     function getEvent (mealID) {
       return $http({
         method: 'GET',
-        url: '/api/in/meals/' + mealID,
+        url: '/meals/' + mealID,
       })
       .then(function (response) {
         return response.data;
@@ -78,7 +78,7 @@
     function getMeals () {
       return $http({
         method: 'GET',
-        url: '/api/in/meals'
+        url: '/meals'
       })
       .then(function (response) {
         return data;

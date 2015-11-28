@@ -3,10 +3,16 @@
   angular.module('app')
   .controller('SearchCtrl', SearchCtrl);
 
-  SearchCtrl.$inject = ['$http', '$q', '$log', '$window', 'searchFactory'];
+  SearchCtrl.$inject = ['$http', '$q', '$log', '$window', 'searchFactory', 'checkUser'];
 
-  function SearchCtrl($http, $q, $log, $window, searchFactory) {
+  function SearchCtrl($http, $q, $log, $window, searchFactory, checkUser) {
     // TODO: Please verify that this matches the refactored style
+
+    // If there is a user, continue with controller logic.
+    // Otherwise, redirect to the home page.
+    // user variable will have all information about Facebook
+    // Friends, profile picture, etc.
+    var user = checkUser.data;
 
     var self = this;
     //date initialization
@@ -16,8 +22,9 @@
     // below are settings for the md-autocomplete directive
     self.simulateQuery = false;
     self.isDisabled = false;
-    //below is a hack for testing, we are struggling to access facebook auth username from client side
-    self.meal = {username: 'aackerman'};
+
+    // WORKS WITH FACEBOOK USERNAME NOW
+    self.meal = {facebookId: user.id};
     self.attendees = [1,2,3,4,5,6,7,8,9];
     self.selectedItem = undefined;
 
@@ -41,7 +48,7 @@
     }
 
     self.querySearch = function(query) {
-      var path = '/api/out/yelp';
+      var path = '/yelp';
 
       return $http({
         url: path + '?term=' + query,

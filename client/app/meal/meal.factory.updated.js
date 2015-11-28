@@ -14,7 +14,7 @@
     return services;
 
     function getMeal(cb) {
-      var path = 'api/in'
+      var path = '/'
       .then(function success(response) {
       	cb(response.data);
       }).catch(function error(response) {

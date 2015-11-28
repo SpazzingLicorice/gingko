@@ -48,7 +48,7 @@
     function getFacebookInfo(cb) {
       var facebookId = window.location.search.slice(1);
       return $http({
-          url: '/api/in/user/:' + facebookId,
+          url: '/user/:' + facebookId,
           method: 'GET'
         })
         .then(function(response) {

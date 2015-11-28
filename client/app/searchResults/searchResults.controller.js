@@ -13,12 +13,8 @@
     self.meals = mealsData.data.map(function(meal, i) {
       return {
         id: ++i,
-        address: meal.address.join(', '),
-        date: meal.date,
-        host: meal.host,
-        time: meal.time,
-        title: meal.title,
-        yelpData: JSON.parse(meal.yelpData)
+        address: meal.restaurant.yelpData.location.display_address.join(', '),
+        yelpData: meal.restaurant.yelpData
       };
     });
 
