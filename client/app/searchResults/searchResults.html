@@ -9,9 +9,15 @@
                   <md-grid-tile-header>
                   </md-grid-tile-header>
                   <figure>
-                    <img ng-src="{{result.yelpData.image_url}}" width="100%" height="100%">
+                    <img ng-src="{{result.image}}" width="100%" height="100%">
                   </figure>
                 </a>
+                <span class="host">
+                  <a ng-href="/#/user/{{result.host_id}}">
+                    <md-tooltip md-visible="false" md-direction="top">Your Host: {{result.hostName}}</md-tooltip>
+                    <img src="{{result.hostPicture}}" class="profile_picture" />
+                  </a>
+                </span>
                 <md-grid-tile-footer>
                 <ul>
                   <li class="name">{{ result.yelpData.name }}</li>

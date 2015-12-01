@@ -9,6 +9,10 @@
   function MealCtrl(multibarFactory, $state, $location, $window, $http, mealsData, mealFactory) {
     var self = this;
 
+    self.joinMeal = function() {
+      mealFactory.joinMeal(self.mealId);
+    };
+
     self.activate = function() {
       self.host = mealsData.data.host;
       self.host.gender = _.capitalize(self.host.gender);

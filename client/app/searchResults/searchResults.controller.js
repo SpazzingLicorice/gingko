@@ -14,7 +14,15 @@
       return {
         id: ++i,
         address: meal.restaurant.yelpData.location.display_address.join(', '),
-        yelpData: meal.restaurant.yelpData
+        yelpData: meal.restaurant.yelpData,
+        image: function() {
+          var imgSmall = meal.restaurant.yelpData.image_url;
+          var imgLarge = imgSmall.slice(0, imgSmall.length -6) + 'o.jpg';
+          return imgLarge;
+        }(),
+        hostName: meal.host.username,
+        hostPicture: meal.host.profilePicture,
+        host_id: meal.host.id
       };
     });
 

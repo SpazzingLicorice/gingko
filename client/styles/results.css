@@ -74,3 +74,31 @@
   /* Support for IE. */
   font-feature-settings: 'liga';
 }
+
+/*
+==============================
+    Card Footer
+==============================
+ */
+
+.gridListdemoBasicUsage span.host {
+ position: relative;
+ top: 38%;
+ left: 41%;
+ display: inline;
+ z-index: 2;
+}
+
+.gridListdemoBasicUsage img.profile_picture {
+  display: inline;
+  width: 50px;
+  height: 50px;
+  border: 5px solid #673ab7;
+  border-radius: 55px;
+  z-index: 2;
+}
+
+.gridListdemoBasicUsage img.profile_picture:hover {
+  cursor: pointer;
+  transform: scale(1.1, 1.1);
+}
