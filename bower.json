@@ -12,6 +12,9 @@
     "test",
     "tests"
   ],
+  "resolutions": {
+    "angular": "~1.4.7"
+  },
   "dependencies": {
     "angular": "~1.4.7",
     "font-awesome": "~4.4.0",
